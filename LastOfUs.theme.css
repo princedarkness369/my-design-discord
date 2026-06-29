@@ -31,7 +31,7 @@
   /* ── Background ─────────────────────────────────────────────────── */
   /* Forest scene from The Last of Us — player's own hosted image recommended.
      Replace the URL below with a direct link to your preferred TLOU wallpaper. */
-  --background-image: url("https://leafyluigi.github.io/images/pexels-josh-sorenson-116359.png");
+  --background-image: url("1879.jpg");
   /* Tip: use a dark TLOU forest still, e.g. the guitar scene or the overgrown city. */
   --user-modal-image: var(--background-image);
   --user-popout-image: var(--background-image);
