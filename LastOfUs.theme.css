@@ -1,0 +1,384 @@
+/**
+ * @name The Last of Us
+ * @author Custom Theme
+ * @version 1.0.0
+ * @description A Last of Us inspired Discord theme — overgrown, post-apocalyptic, and atmospheric.
+ * @source https://github.com/LeafyLuigi/discord-themes
+ */
+
+/* ── Base Pyrite Imports ─────────────────────────────────────────── */
+@import url(https://leafyluigi.github.io/discord-themes/pyrite/build/base.css);
+@import url(https://leafyluigi.github.io/discord-themes/pyrite/build/better-discord.css);
+@import url(https://leafyluigi.github.io/discord-themes/whitney.css);
+
+/* ── Google Fonts: Cinzel (display) + Source Sans 3 (body) ─────── */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Source+Sans+3:wght@300;400;600&display=swap');
+
+/* ════════════════════════════════════════════════════════════════════
+   ROOT — THE LAST OF US PALETTE
+   ════════════════════════════════════════════════════════════════════
+   Ash Black    #0d0e0b   — deep background, like charred wood
+   Spore Brown  #1c1a14   — sidebar / panel fill
+   Fungal Dark  #141810   — server list / header
+   Moss Green   #4a6741   — primary accent (spore glow, Fireflies)
+   Pale Fern    #6b8f5e   — hover / secondary accent
+   Ember Amber  #c8751a   — warning, unread pings, torch flame
+   Bone White   #d4cdb8   — primary text (aged paper)
+   Dust Gray    #7a7568   — secondary / muted text
+   ════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Background ─────────────────────────────────────────────────── */
+  /* Forest scene from The Last of Us — player's own hosted image recommended.
+     Replace the URL below with a direct link to your preferred TLOU wallpaper. */
+  --background-image: url("https://leafyluigi.github.io/images/pexels-josh-sorenson-116359.png");
+  /* Tip: use a dark TLOU forest still, e.g. the guitar scene or the overgrown city. */
+  --user-modal-image: var(--background-image);
+  --user-popout-image: var(--background-image);
+  --background-attachment: fixed;
+  --user-modal-attachment: fixed;
+  --user-popout-attachment: fixed;
+
+  /* ── TLOU Firefly / Spore Icon ───────────────────────────────────
+     The home button becomes a Firefly logo. Replace URL with a transparent
+     PNG of the Fireflies insignia you own / have rights to use.            */
+  --home-icon: url("https://leafyluigi.github.io/images/pexels-chris-munnik-2604991.png");
+
+  /* ── Accent Colours ─────────────────────────────────────────────── */
+  --primary-color:   #4a6741;   /* Moss Green  — main accent */
+  --secondary-color: #3d5836;   /* Darker Moss — secondary   */
+  --hover-color:     #6b8f5e;   /* Pale Fern   — hover state */
+  --tooltip-color:   #2e4229;   /* Deep Forest — tooltips    */
+
+  /* ── Status / Alert Colours ─────────────────────────────────────── */
+  --green-color:    #4a6741;   /* online  — spore green      */
+  --yellow-color:   #c8751a;   /* idle    — torch amber      */
+  --red-color:      #8b3a2e;   /* dnd     — dried blood red  */
+  --link-color:     #7ab06e;   /* links   — pale fungal glow */
+  --live-color:     #6b4e8a;   /* live    — Cordyceps purple */
+  --offline-color:  #4a4840;   /* offline — ash gray         */
+
+  /* ── Channel Colours ────────────────────────────────────────────── */
+  --category-color:         var(--header-primary);
+  --selected-channel-color: var(--header-primary);
+  --unread-channel-color:   var(--hsl-primary-color);
+  --read-channel-color:     var(--interactive-normal);
+  --muted-channel-color:    var(--interactive-muted);
+  --locked-voice-channel-color: var(--hsl-red-color);
+  --show-channel-unread-dot: block;
+
+  /* ── Mentions ───────────────────────────────────────────────────── */
+  --mention-opacity: 0.25;
+
+  /* ── Typography ─────────────────────────────────────────────────── */
+  --body-font: 'Source Sans 3', Whitney, "gg sans", "Noto Sans", sans-serif;
+  --code-font: 'Hack', 'Monaco', Consolas, Courier, monospace;
+
+  /* ── UI Controls ────────────────────────────────────────────────── */
+  --expression-picker-height: 500px;
+  --hide-speed: 0.4s;
+  --hide-member-list:   1;
+  --hide-active-now:    1;
+  --hide-profile-panel: 1;
+  --hide-channel-list:  0;
+  --blur-intensity:     1;
+  --win-min-max-close-button-width: 28px;
+
+  /* ── Background filters — desaturated, film-grain mood ─────────── */
+  --background-filter: saturate(0.75) brightness(0.55);
+  --user-modal-filter: saturate(0.75) brightness(0.55);
+  --user-popout-filter: saturate(0.75) brightness(0.55);
+
+  /* ── HSL Server List ────────────────────────────────────────────── */
+  --HSL-server-icon-size: 40px;
+  --HSL-server-spacing:   10px;
+  --HSL-server-direction: column;
+
+  /* ── Debug ──────────────────────────────────────────────────────── */
+  --update-notice-may25: none;
+}
+
+:root:root:root {
+  --mention-background: var(--hsl-primary-color);
+}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   DARK THEME SHADING  (Ash / Dark / Onyx — all share TLOU palette)
+   ════════════════════════════════════════════════════════════════════ */
+
+.theme-dark,
+.theme-darker,
+.theme-midnight,
+.theme-dark   :not(div[class*=previewContainer_]) .theme-light:not(div[class*=layer_],div[class*=outer_]:is([class*=user-profile-popout],[class*=user-profile-modal])),
+.theme-darker :not(div[class*=previewContainer_]) .theme-light:not(div[class*=layer_],div[class*=outer_]:is([class*=user-profile-popout],[class*=user-profile-modal])),
+.theme-midnight:not(div[class*=previewContainer_]) .theme-light:not(div[class*=layer_],div[class*=outer_]:is([class*=user-profile-popout],[class*=user-profile-modal])) {
+  /* Panels feel like weathered, fungus-stained timber */
+  --card-background:  rgba(10, 12, 8, 0.55);
+  --side-shading:     rgba(8,  10,  6, 0.60);
+  --middle-shading:   rgba(12, 14, 9, 0.35);
+  --header-shading:   rgba(6,   8,  4, 0.75);
+  --hover-filter:     rgba(74, 103, 65, 0.12);   /* Moss glow on hover */
+  --active-filter:    rgba(74, 103, 65, 0.22);   /* Stronger on click  */
+}
+
+/* Light theme fallback (rare, but included) */
+.theme-light,
+.theme-light :not(div[class*=previewContainer_]) .theme-dark:not(div[class*=layer_],div[class*=outer_]:is([class*=user-profile-popout],[class*=user-profile-modal]),div[class*=sidebar_],nav[class*=guilds_],div[class*=sidebarRegion_]) {
+  --card-background:  rgba(255,255,255,0.06);
+  --side-shading:     rgba(255,255,255,0.35);
+  --middle-shading:   rgba(255,255,255,0.20);
+  --header-shading:   rgba(255,255,255,0.50);
+  --hover-filter:     rgba(74, 103, 65, 0.15);
+  --active-filter:    rgba(74, 103, 65, 0.28);
+}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   CHAT TYPOGRAPHY — aged paper, survival journal feel
+   ════════════════════════════════════════════════════════════════════ */
+:root {
+  --chat-font-size:        0.9375rem;
+  --chat-line-height:      1.45rem;
+  --chat-font-color:       var(--text-normal);
+  --chat-font-style:       normal;
+  --chat-font-weight:      400;
+  --chat-light-theme-not-zoomed-in-font-weight: 500;
+
+  --chat-bold-font-weight:         700;
+  --chat-emphasis-style:           italic;
+  --chat-underline-decoration:     underline;
+  --chat-strikethrough-decoration: line-through;
+
+  --chat-preformatted-font-size:   0.75rem;
+  --chat-preformatted-line-height: 1rem;
+
+  --chat-subtext-color:       var(--text-muted);
+  --chat-subtext-font-size:   0.8125rem;
+  --chat-subtext-line-height: 1.11719rem;
+
+  --chat-code-font-size:        0.875rem;
+  --chat-code-line-height:      1.125rem;
+  --chat-inline-code-font-size: 85%;
+
+  /* Headings — Cinzel gives a carved / engraved look */
+  --chat-headings-font-weight: 700;
+  --chat-headings-font-color:  #8eb87e;    /* Pale fern heading glow */
+  --chat-headings-line-height: 1.375em;
+  --chat-h1-font-size: 1.5rem;
+  --chat-h2-font-size: 1.25rem;
+  --chat-h3-font-size: 1rem;
+
+  --chat-inline-headings-font-weight: 600;
+  --chat-inline-headings-font-color:  inherit;
+  --chat-inline-headings-line-height: 1.25em;
+
+  --chat-visual-refresh-line-height: 1.5rem;
+}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   CUSTOM OVERRIDES — TLOU ATMOSPHERE
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ── Server / Guild list — dark as charcoal ─────────────────────── */
+nav[class*="guilds_"] {
+  background: rgba(8, 10, 6, 0.88) !important;
+}
+
+/* ── Server icons — moss border ring ───────────────────────────────
+   Gives each server icon a subtle mossy outline, like things left in
+   a damp forest long enough to start growing. */
+[class*="blobContainer_"] svg circle,
+[class*="blobContainer_"] svg rect {
+  fill: #2e3d28 !important;
+}
+
+[class*="wrapper_"][class*="selected_"] [class*="blobContainer_"] rect,
+[class*="wrapper_"]:hover [class*="blobContainer_"] rect {
+  fill: #4a6741 !important;
+}
+
+/* ── Channel sidebar — layered bark texture shadow ──────────────── */
+[class*="sidebar_"] {
+  background: rgba(10, 12, 8, 0.70) !important;
+  border-right: 1px solid rgba(74, 103, 65, 0.15);
+}
+
+/* ── Main chat area — very dark overlay over background ─────────── */
+[class*="chat_"] {
+  background: rgba(8, 10, 6, 0.45) !important;
+}
+
+/* ── Message hover — spore-green tint ──────────────────────────────
+   When hovering a message it glows like bioluminescent spores. */
+[class*="message_"]:hover {
+  background: rgba(74, 103, 65, 0.07) !important;
+}
+
+/* ── Channel names — bone-white, muted by default ──────────────── */
+[class*="name_"][class*="channel_"] {
+  color: #7a7568 !important;
+  font-family: 'Source Sans 3', sans-serif;
+  letter-spacing: 0.02em;
+}
+
+[class*="name_"][class*="selected_"],
+[class*="name_"]:hover {
+  color: #d4cdb8 !important;
+}
+
+/* ── Category labels — Cinzel font, engraved look ───────────────── */
+[class*="containerDefault_"][class*="collapsed_"] [class*="name_"],
+[class*="categoryContainer_"] [class*="name_"] {
+  font-family: 'Cinzel', serif !important;
+  font-size: 0.65rem !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: #4a6741 !important;
+}
+
+/* ── Message input — aged, semi-dark ───────────────────────────────
+   Looks like writing in a worn survivor's journal. */
+[class*="channelTextArea_"] {
+  background: rgba(13, 15, 10, 0.72) !important;
+  border: 1px solid rgba(74, 103, 65, 0.20) !important;
+  border-radius: 8px !important;
+  color: #d4cdb8 !important;
+}
+
+[class*="channelTextArea_"]:focus-within {
+  border-color: rgba(74, 103, 65, 0.55) !important;
+  box-shadow: 0 0 8px rgba(74, 103, 65, 0.18) !important;
+}
+
+/* ── Buttons / interactive elements — moss green ────────────────── */
+[class*="button_"][class*="lookFilled_"][class*="colorBrand_"] {
+  background-color: #4a6741 !important;
+}
+
+[class*="button_"][class*="lookFilled_"][class*="colorBrand_"]:hover {
+  background-color: #5a7d50 !important;
+}
+
+/* ── Unread badges & ping counts — ember amber ──────────────────── */
+[class*="numberBadge_"],
+[class*="base_"][class*="baseShapeRound_"] {
+  background-color: #c8751a !important;
+}
+
+/* ── Mention highlights — Cordyceps amber-red ──────────────────── */
+[class*="mentioned_"] {
+  background: rgba(200, 117, 26, 0.10) !important;
+  border-left: 2px solid #c8751a !important;
+}
+
+/* ── Scrollbar — thin, dark green ──────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(8, 10, 6, 0.3);
+}
+::-webkit-scrollbar-thumb {
+  background: #3d5836;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4a6741;
+}
+
+/* ── Codeblocks — infected / terminal look ─────────────────────── */
+[class*="markup_"] code,
+[class*="markup_"] pre {
+  background: rgba(8, 12, 6, 0.80) !important;
+  border: 1px solid rgba(74, 103, 65, 0.25) !important;
+  color: #7ab06e !important;
+  border-radius: 4px !important;
+}
+
+/* ── Tooltip — dark with moss accent ───────────────────────────── */
+[class*="tooltip_"] {
+  background: #0d1009 !important;
+  border: 1px solid rgba(74, 103, 65, 0.3) !important;
+  color: #d4cdb8 !important;
+  font-family: 'Source Sans 3', sans-serif !important;
+  font-size: 0.78rem !important;
+}
+
+/* ── Title / header bar — darkest layer ─────────────────────────── */
+[class*="title_"][class*="guilds_"],
+[class*="header_"][class*="container_"] {
+  background: rgba(6, 8, 4, 0.85) !important;
+  color: #d4cdb8 !important;
+  font-family: 'Cinzel', serif !important;
+  letter-spacing: 0.05em;
+}
+
+/* ── User area (bottom left) — dark panel ───────────────────────── */
+[class*="panels_"] {
+  background: rgba(8, 10, 6, 0.82) !important;
+  border-top: 1px solid rgba(74, 103, 65, 0.18) !important;
+}
+
+/* ── Online status dot — spore-green ───────────────────────────── */
+[class*="status_"][class*="online_"] {
+  background-color: #4a6741 !important;
+}
+
+/* ── Member list ─────────────────────────────────────────────────── */
+[class*="membersWrap_"] {
+  background: rgba(10, 12, 8, 0.65) !important;
+  border-left: 1px solid rgba(74, 103, 65, 0.12) !important;
+}
+
+/* ── Reaction pills ─────────────────────────────────────────────── */
+[class*="reaction_"] {
+  background: rgba(74, 103, 65, 0.15) !important;
+  border: 1px solid rgba(74, 103, 65, 0.30) !important;
+  border-radius: 4px !important;
+}
+
+[class*="reaction_"]:hover {
+  background: rgba(74, 103, 65, 0.28) !important;
+}
+
+[class*="reaction_"][class*="reactionMe_"] {
+  background: rgba(74, 103, 65, 0.40) !important;
+  border-color: #4a6741 !important;
+}
+
+/* ── Selection colour — mossy highlight ─────────────────────────── */
+::selection {
+  background: rgba(74, 103, 65, 0.45);
+  color: #d4cdb8;
+}
+
+/* ── Embed borders — amber torch line ───────────────────────────── */
+[class*="embedAuthorIcon_"],
+[class*="embed_"] {
+  border-left-color: #c8751a !important;
+}
+
+/*
+════════════════════════════════════════════════════════════════════════
+  HOW TO PERSONALISE
+════════════════════════════════════════════════════════════════════════
+
+  1. BACKGROUND IMAGE
+     Find a high-res TLOU wallpaper you love (guitar scene, overgrown
+     city, etc.) and upload it to a free image host like imgur.com.
+     Paste the direct .jpg/.png HTTPS URL into:
+       --background-image: url("YOUR_URL_HERE");
+
+  2. HOME BUTTON ICON (Fireflies Logo)
+     Find or recreate a transparent PNG of the Fireflies moth insignia
+     and host it the same way. Paste the URL into:
+       --home-icon: url("YOUR_FIREFLIES_ICON_URL_HERE");
+
+  3. OPTIONAL EXTRAS (uncomment to enable)
+     Horizontal server list, border radius, Windows titlebar restore —
+     all inherited from the Pyrite imports at the top of this file.
+
+════════════════════════════════════════════════════════════════════════
+*/
