@@ -1,2 +1,2 @@
 # my-design-discord
-this is m 
+this is my design for discord in last ou us type 
